@@ -2,6 +2,13 @@
 
 [Docker Hub Link](https://hub.docker.com/r/andrey0001/unbound-tls)
 
+Supported architecture:
+```
+linux/amd64
+linux/arm/v7
+linux/arm64
+```
+
 To hide your DNS requests to upstream provider you can use TLS for DNS. Not all software/equipment support tls for dns.
 This container will help solve it, and improve your privacy.
 
