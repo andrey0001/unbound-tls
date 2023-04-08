@@ -2,6 +2,8 @@
 
 [Docker Hub Link](https://hub.docker.com/r/andrey0001/unbound-tls)
 
+![Unbound](Unbound-DNS-logo.png)
+
 Supported architecture:
 
 - linux/amd64
