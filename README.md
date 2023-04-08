@@ -54,7 +54,7 @@ Also, the good idea to use it with [PiHole](https://github.com/pi-hole/docker-pi
 Then use variable `PIHOLE_DNS_` when you start PiHole and set it to `IPADDRESS#2253`
 
 ***
-#### **I also prepared compose file "docker-compose-with-pihole.yaml" localed in this folder. You can edit and use it with docker-compose or portainer.**
+#### **I also prepared compose file with PiHole "docker-compose-with-pihole.yaml" localed in this folder. You can edit and use it with docker-compose or portainer.**
 ***
 
 The container forward all requests with TLS to:
