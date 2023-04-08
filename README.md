@@ -21,7 +21,7 @@ This container will help solve it, and improve your privacy.
 > ```docker run --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
 
 or with compose:
-```
+```yaml
 version: "3.8"
   unbound:
     image: andrey0001/unbound-tls:latest
