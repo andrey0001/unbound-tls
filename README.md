@@ -40,6 +40,8 @@ The container forward all requests with TLS to:
    149.112.112.112@853#dns.quad9.net
 ```
 
+Since ARM architecture also pushed to [Docker Hub](https://hub.docker.com/r/andrey0001/unbound-tls/tags), you could use container on [Mikrotik](https://mikrotik.com/) devices, supported on the latest version of RouterOS.
+
 Enjoy!!!
 
 PS: *Of course, you can make a compose file with PiHole and with an ip binding and get a ready-made solution, but at the moment I'm too lazy :-)*
