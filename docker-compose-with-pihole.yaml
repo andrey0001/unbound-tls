@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  pihole:
+    image: pihole/pihole:latest
+    hostname: pihole
+    container_name: pihole
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8080:80/tcp"
+    environment:
+      TZ: 'Asia/Jerusalem'
+      WEBPASSWORD: PassWord
+      PIHOLE_DNS_: "10.8.1.3"
+    volumes:
+      - /opt/pihole/etc:/etc/pihole/
+      - /opt/pihole/dnsmasq:/etc/dnsmasq.d/
+    restart: unless-stopped
+    networks:
+      pihole-unbound-dns:
+        ipv4_address: 10.8.1.2
+
+  unbound:
+    image: andrey0001/unbound-tls:latest
+    hostname: unbound-tls
+    container_name: unbound-tls
+    restart: unless-stopped
+    networks:
+      pihole-unbound-dns:
+        ipv4_address: 10.8.1.3
+
+networks:
+  pihole-unbound-dns:
+    ipam:
+      config:
+        - subnet: 10.8.1.0/29
