@@ -7,14 +7,14 @@ This container will help solve it, and improve your privacy.
 
 **To build**:
 
-> docker build . -t unbound-tls
+> ```docker build . -t unbound-tls```
 
 **To run**:
 
-> docker run --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls
+> ```docker run --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
 
 The container also looks for additional configs in /etc/unbound/unbound.conf.d , so you can attach volume and place your own files:
-> docker run -v ./conf.d:/etc/unbound/unbound.conf.d  --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls
+> ```docker run -v ./conf.d:/etc/unbound/unbound.conf.d  --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
 
 Example of "example.conf" file you could place in forder:
 ```
@@ -26,7 +26,7 @@ server:
 ```
 
 Also, the good idea to use it with [PiHole](https://github.com/pi-hole/docker-pi-hole). So, just change port for this container, then send all requests from PiHole to the port. As example:
-> docker run --name unbound-tls -p 2253:53 -p 2253:53/udp -d andrey0001/unbound-tls
+> ```docker run --name unbound-tls -p 2253:53 -p 2253:53/udp -d andrey0001/unbound-tls```
 
 Then use variable `PIHOLE_DNS_` when you start PiHole and set it to `IPADDRESS#2253`
 
@@ -42,4 +42,4 @@ The container forward all requests with TLS to:
 
 Enjoy!!!
 
-PS: Of course, you can make a compose file with PiHole and with an ip binding and get a ready-made solution, but at the moment I'm too lazy :-)
+PS: *Of course, you can make a compose file with PiHole and with an ip binding and get a ready-made solution, but at the moment I'm too lazy :-)*
