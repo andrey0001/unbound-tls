@@ -14,7 +14,7 @@ This container will help solve it, and improve your privacy.
 > ```docker run --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
 
 The container also looks for additional configs in /etc/unbound/unbound.conf.d , so you can attach volume and place your own files:
-> ```docker run -v ./conf.d:/etc/unbound/unbound.conf.d  --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
+> ```docker run -v ./conf.d:/etc/unbound/unbound.conf.d --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
 
 Example of "example.conf" file you could place in forder:
 ```
