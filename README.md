@@ -1,4 +1,4 @@
-### Unbound DSN resolver with TLS upstream
+### Unbound DNS resolver with TLS upstream
 
 [Docker Hub Link](https://hub.docker.com/r/andrey0001/unbound-tls)
 
