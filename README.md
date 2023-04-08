@@ -37,6 +37,10 @@ Also, the good idea to use it with [PiHole](https://github.com/pi-hole/docker-pi
 
 Then use variable `PIHOLE_DNS_` when you start PiHole and set it to `IPADDRESS#2253`
 
+***
+#### **I also prepared compose file "docker-compose-with-pihole.yaml" localed in this folder. You can edit and use it with docker-compose or portainer.**
+***
+
 The container forward all requests with TLS to:
 ```
    1.0.0.1@853#one.one.one.one
@@ -51,4 +55,3 @@ Since ARM architecture also pushed to [Docker Hub](https://hub.docker.com/r/andr
 
 Enjoy!!!
 
-PS: *Of course, you can make a compose file with PiHole and with an ip binding and get a ready-made solution, but at the moment I'm too lazy :-)*
