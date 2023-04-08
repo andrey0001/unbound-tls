@@ -25,6 +25,8 @@ services:
     hostname: unbound-tls
     container_name: unbound-tls
     restart: unless-stopped
+    volumes:
+      - /opt/unbound-tls:/etc/unbound/unbound.conf.d
     networks:
       pihole-unbound-dns:
         ipv4_address: 10.8.1.3
