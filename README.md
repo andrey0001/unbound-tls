@@ -20,6 +20,22 @@ This container will help solve it, and improve your privacy.
 
 > ```docker run --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
 
+or with compose:
+```
+version: "3.8"
+  unbound:
+    image: andrey0001/unbound-tls:latest
+    hostname: unbound-tls
+    container_name: unbound-tls
+    network_mode: bridge
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    restart: unless-stopped
+    volumes:
+      - /opt/unbound-tls:/etc/unbound/unbound.conf.d
+```
+
 The container also looks for additional configs in /etc/unbound/unbound.conf.d , so you can attach volume and place your own files:
 > ```docker run -v ./conf.d:/etc/unbound/unbound.conf.d --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
 
