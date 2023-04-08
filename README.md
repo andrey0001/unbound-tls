@@ -36,6 +36,7 @@ version: "3.8"
     volumes:
       - /opt/unbound-tls:/etc/unbound/unbound.conf.d
 ```
+> ```docker-compose up -d```
 
 The container also looks for additional configs in /etc/unbound/unbound.conf.d , so you can attach volume and place your own files:
 > ```docker run -v ./conf.d:/etc/unbound/unbound.conf.d --name unbound-tls -p 53:53 -p 53:53/udp -d andrey0001/unbound-tls```
