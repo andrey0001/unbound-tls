@@ -1,7 +1,7 @@
 ### Unbound DSN resolver with TLS upstream
 
 To hide your DNS requests to upstream provider you can use TLS for DNS. Not all software/equipment support tls for dns.
-This container help solve it, and improve your privacy.
+This container will help solve it, and improve your privacy.
 
 **To build**:
 
@@ -39,3 +39,5 @@ The container forward all requests with TLS to:
 ```
 
 Enjoy!!!
+
+PS: Of course, you can make a compose file with PiHole and with an ip binding and get a ready-made solution, but at the moment I'm too lazy :-)
