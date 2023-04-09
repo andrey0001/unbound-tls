@@ -4,14 +4,17 @@ FROM ${ARCH}alpine:3.17
 
 MAINTAINER Andrey Sorokin <andrey@sorokin.org>
 
-RUN apk add --no-cache wget ca-certificates unbound &&\
+RUN apk add --no-cache wget ca-certificates unbound s6 &&\
     mkdir -p /etc/unbound/unbound.conf.d &&\
     wget -S https://www.internic.net/domain/named.cache -O /etc/unbound/root.hints
+
+COPY docker/services.d /etc/services.d
 
 COPY unbound.conf /etc/unbound/unbound.conf
 
 EXPOSE 53/tcp
 EXPOSE 53/udp
 
-ENTRYPOINT ["/usr/sbin/unbound","-d"]
+#ENTRYPOINT ["/usr/sbin/unbound","-d"]
+ENTRYPOINT ["/init"]
 
