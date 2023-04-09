@@ -15,6 +15,5 @@ COPY unbound.conf /etc/unbound/unbound.conf
 EXPOSE 53/tcp
 EXPOSE 53/udp
 
-#ENTRYPOINT ["/usr/sbin/unbound","-d"]
 ENTRYPOINT ["/init"]
 
