@@ -4,7 +4,7 @@ FROM ${ARCH}alpine:3.17
 
 MAINTAINER Andrey Sorokin <andrey@sorokin.org>
 
-RUN apk add --no-cache wget ca-certificates unbound s6 &&\
+RUN apk add --no-cache wget ca-certificates unbound s6-overlay &&\
     mkdir -p /etc/unbound/unbound.conf.d &&\
     wget -S https://www.internic.net/domain/named.cache -O /etc/unbound/root.hints
 
