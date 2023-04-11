@@ -1,6 +1,6 @@
 ### Unbound DNS resolver with TLS upstream
 
-[![Build Status](https://drone.andrey.im/api/badges/shad/unbound-tls/status.svg?ref=refs/heads/s6)]
+[![Build Status](https://drone.andrey.im/api/badges/shad/unbound-tls/status.svg?ref=refs/heads/s6)](https://drone.andrey.im/shad/unbound-tls)
 
 [Docker Hub Link](https://hub.docker.com/r/andrey0001/unbound-tls)
 
