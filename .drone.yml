@@ -9,7 +9,6 @@ server:
   ssh_key:
     from_secret: ssh_key_umac
 
-
 steps:
 - name: git_login
   environment:
@@ -20,18 +19,39 @@ steps:
   commands:
   - echo $PASSWORD | docker login -u $USERNAME --password-stdin
   - docker buildx create --name multiarch1 --driver docker-container --use
+  when:
+    event:
+    - promote
+    
+- name: build_master
+  commands:
+  - docker build --tag andrey0001/unbound-tls:latest .
+  - docker rmi andrey0001/unbound-tls:latest
+  when:
+    branch:
+    - master  
+
 - name: build_and_push_master
   commands:
   - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls .
   when:
+    event:
+    - promote
+
+- name: build_s6
+  commands:
+  - docker build --tag andrey0001/unbound-tls:s6 .
+  - docker rmi andrey0001/unbound-tls:s6
+  when:
     branch:
-    - master
+    - s6  
+
 - name: build_and_push_s6
   commands:
   - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls:s6 .
   when:
-    branch:
-    - s6
+    event:
+    - promote
 
 node:
   instance: umac
