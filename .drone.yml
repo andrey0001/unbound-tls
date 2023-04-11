@@ -9,15 +9,6 @@ server:
   ssh_key:
     from_secret: ssh_key_umac
 
-clone:
-  disable: false
-  when:
-    branch:
-    - master
-    - s6
-    event:
-    - tag
-
 steps:
 - name: build_and_push_master
   environment:
