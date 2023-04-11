@@ -1,0 +1,26 @@
+---
+kind: pipeline
+type: ssh
+name: create-docker-images
+
+server:
+  host: 192.168.72.8:2022
+  user: root
+  ssh_key:
+    from_secret: ssh_key_umac
+  
+steps:
+- name: build_and_push_master
+  commands:
+  - git checkout master
+  - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls .
+- name: build_and_push_s6
+  commands:
+  - git checkout s6
+  - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls:s6 .
+
+node:
+  instance: umac
+  type: ssh
+
+  
