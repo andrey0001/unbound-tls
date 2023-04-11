@@ -27,8 +27,8 @@ steps:
   commands:
   - docker build --tag andrey0001/unbound-tls:latest .
   - docker run --detach --name build_test_master_unbound-tls -p 5753:53 -p 5753:53/udp -d andrey0001/unbound-tls:latest
-  - sleep 10; dig a -p 5753 @127.0.0.1 google.com
-  - docker stop build_test_master_unbound-tls; docker rm build_test_master_unbound-tls
+  - sleep 10; dig +short a -p 5753 @127.0.0.1 google.com
+  - docker stop build_test_master_unbound-tls; sleep 5; docker rm build_test_master_unbound-tls
   - docker rmi andrey0001/unbound-tls:latest
   when:
     branch:
@@ -43,9 +43,12 @@ steps:
     event:
     - promote
 
-- name: build_s6
+- name: build_test_s6
   commands:
   - docker build --tag andrey0001/unbound-tls:s6 .
+  - docker run --detach --name build_test_s6_unbound-tls -p 5853:53 -p 5853:53/udp -d andrey0001/unbound-tls:s6
+  - sleep 10; dig +short a -p 5853 @127.0.0.1 google.com
+  - docker stop build_test_s6_unbound-tls; sleep 5; docker rm build_test_s6_unbound-tls
   - docker rmi andrey0001/unbound-tls:s6
   when:
     branch:
