@@ -9,6 +9,7 @@ server:
   ssh_key:
     from_secret: ssh_key_umac
 
+
 steps:
 - name: build_and_push_master
   environment:
