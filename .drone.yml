@@ -11,10 +11,15 @@ server:
 
 steps:
 - name: build_and_push_master
+  environment:
+    USERNAME:
+      from_secret: docker_username
+    PASSWORD:
+      from_secret: docker_password
   commands:
   - pwd
   - git checkout master
-  - echo $DOCKER_PASSWORD | docker login -u andrey0001 --password-stdin
+  - echo $PASSWORD | docker login -u $USERNAME --password-stdin
   - docker buildx create --name multiarch1 --driver docker-container --use
   - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls .
 - name: build_and_push_s6
