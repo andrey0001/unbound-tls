@@ -10,4 +10,16 @@ version: "3.8"
     restart: unless-stopped
     volumes:
       - /opt/unbound-tls:/etc/unbound/unbound.conf.d
-
+    ulimits:
+     nproc: 65535
+     nofile:
+      soft: 20000
+      hard: 40000
+    deploy:
+     resources:
+      limits:
+        cpus: '0.30'
+        memory: 256M
+      reservations:
+        cpus: '0.1'
+        memory: 128M
