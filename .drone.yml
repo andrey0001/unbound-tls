@@ -14,7 +14,7 @@ steps:
   commands:
   - pwd
   - git checkout master
-  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker login -u $docker_user -p $docker_password
   - docker buildx create --name multiarch1 --driver docker-container --use
   - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls .
 - name: build_and_push_s6
