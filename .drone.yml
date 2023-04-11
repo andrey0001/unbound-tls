@@ -22,19 +22,22 @@ steps:
   - echo $PASSWORD | docker login -u $USERNAME --password-stdin
   - docker buildx create --name multiarch1 --driver docker-container --use
   - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls .
+  when:
+    branch:
+    - master
+    event:
+    - tag
 - name: build_and_push_s6
   commands:
   - pwd
   - git fetch --all
   - git checkout s6
   - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls:s6 .
-
-when:
-  branch:
-  - master
-  - s6
-  event:
-  - tag
+  when:
+    branch:
+    - s6
+    event:
+    - tag
 
 node:
   instance: umac
