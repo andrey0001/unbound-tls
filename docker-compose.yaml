@@ -1,6 +1,6 @@
 version: "3.8"
   unbound:
-    image: andrey0001/unbound-tls:latest
+    image: andrey0001/unbound-tls:s6
     hostname: unbound-tls
     container_name: unbound-tls
     network_mode: bridge
