@@ -21,7 +21,7 @@ services:
         ipv4_address: 10.8.1.2
 
   unbound:
-    image: andrey0001/unbound-tls:latest
+    image: andrey0001/unbound-tls:s6
     hostname: unbound-tls
     container_name: unbound-tls
     restart: unless-stopped
