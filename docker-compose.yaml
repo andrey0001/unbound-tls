@@ -11,16 +11,20 @@ services:
     restart: unless-stopped
     volumes:
       - /opt/unbound-tls:/etc/unbound/unbound.conf.d
-    ulimits:
-     nproc: 65535
-     nofile:
-      soft: 20000
-      hard: 40000
-    deploy:
-     resources:
-      limits:
-        cpus: '0.30'
-        memory: 256M
-      reservations:
-        cpus: '0.1'
-        memory: 128M
+#    ulimits:
+#     nproc: 65535
+#     nofile:
+#      soft: 20000
+#      hard: 40000
+#    deploy:
+#     resources:
+#      limits:
+#        cpus: '0.30'
+#        memory: 256M
+#      reservations:
+#        cpus: '0.1'
+#        memory: 128M
+##    cpu_count: 1
+##    cpus: 0.6
+##    cpu_percent: 30
+##    mem_limit: 256m
