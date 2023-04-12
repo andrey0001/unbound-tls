@@ -24,6 +24,7 @@ This container will help solve it, and improve your privacy.
 or with compose:
 ```yaml
 version: "3.8"
+services:
   unbound:
     image: andrey0001/unbound-tls:s6
     hostname: unbound-tls
