@@ -47,8 +47,8 @@ steps:
 
 - name: build_test_s6
   commands:
-  - docker build --tag andrey0001/unbound-tls:s6 .
-  - docker run --name build_test_s6_unbound-tls -p 5853:53 -p 5853:53/udp -d andrey0001/unbound-tls:s6
+  - docker build --tag andrey0001/unbound-tls:${DRONE_BRANCH} .
+  - docker run --name build_test_s6_unbound-tls -p 5853:53 -p 5853:53/udp -d andrey0001/unbound-tls:${DRONE_BRANCH}
   - sleep 10; dig +short a -p 5853 @127.0.0.1 google.com
   - docker stop build_test_s6_unbound-tls; sleep 5; docker rm build_test_s6_unbound-tls
   - docker rmi andrey0001/unbound-tls:s6
@@ -58,7 +58,7 @@ steps:
 
 - name: build_and_push_s6
   commands:
-  - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls:s6 .
+  - docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls:${DRONE_BRANCH} .
   when:
     branch:
     - s6
