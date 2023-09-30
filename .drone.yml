@@ -32,6 +32,7 @@ steps:
   - sleep 10; dig +short a -p 5753 @127.0.0.1 google.com
   - docker stop build_test_master_unbound-tls; sleep 5; docker rm build_test_master_unbound-tls
   - docker rmi andrey0001/unbound-tls:latest
+  - echo "Test passed!!!"
   when:
     branch:
     - master  
@@ -47,11 +48,12 @@ steps:
 
 - name: build_test_s6
   commands:
-  - docker build --tag andrey0001/unbound-tls:${DRONE_BRANCH} .
+  - docker build --tag andrey0001/unbound-tls:s6 .
   - docker run --name build_test_s6_unbound-tls -p 5853:53 -p 5853:53/udp -d andrey0001/unbound-tls:${DRONE_BRANCH}
   - sleep 10; dig +short a -p 5853 @127.0.0.1 google.com
   - docker stop build_test_s6_unbound-tls; sleep 5; docker rm build_test_s6_unbound-tls
   - docker rmi andrey0001/unbound-tls:s6
+  - echo "Test passed!!!"
   when:
     branch:
     - s6  
