@@ -38,4 +38,12 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: ${{ env.REGISTRY_IMAGE }}:${{ steps.extract_branch.outputs.TagName }}
+      - name: Tests
+        shell: bash
+        run: |
+          docker run --name build_test_master_unbound-tls -p 5753:53 -p 5753:53/udp -d ${{ env.REGISTRY_IMAGE }}:${{ steps.extract_branch.outputs.TagName }}
+          sleep 10; dig +short a -p 5753 @127.0.0.1 google.com
+          docker stop build_test_master_unbound-tls; sleep 5; docker rm build_test_master_unbound-tls
+          docker rmi andrey0001/unbound-tls:latest
+          echo "Test passed!!!"
 
