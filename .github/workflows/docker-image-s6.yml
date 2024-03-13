@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/} ${{ BRANCH_NAME}}
+        run: echo running on branch ${GITHUB_REF##*/} ${{ BRANCH_NAME }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -31,5 +31,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: andrey0001/unbound-tls:${{ BRANCH_NAME}}
+          tags: andrey0001/unbound-tls:${{ BRANCH_NAME }}
 
