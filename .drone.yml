@@ -19,6 +19,7 @@ steps:
     PASSWORD:
       from_secret: docker_password
   commands:
+  - echo $DRONE_STAGE_MACHINE
   - echo $PASSWORD | docker login -u $USERNAME --password-stdin
   - docker buildx create --name multiarch1 --driver docker-container --use
   when:
@@ -68,6 +69,7 @@ steps:
     - promote
 
 node:
-  instance: umac
+  instance: umac3
   type: ssh
+  
   

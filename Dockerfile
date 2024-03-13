@@ -1,5 +1,5 @@
 ARG ARCH=
-FROM ${ARCH}alpine:3.18
+FROM ${ARCH}alpine:3.19
 # docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag andrey0001/unbound-tls .
 
 MAINTAINER Andrey Sorokin <andrey@sorokin.org>
