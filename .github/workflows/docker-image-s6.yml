@@ -17,9 +17,9 @@ jobs:
       - name: Extract Branch Name
         shell: bash
         run: |
-        branchName=${GITHUB_REF#refs/heads/}
-        if [ $branchName = 'master' ]; then TagName='latest'; else TagName=$branchName; fi
-        echo "::set-output name=TagName::$(echo $TagName)"
+          branchName=${GITHUB_REF#refs/heads/}
+          if [ $branchName = 'master' ]; then TagName='latest'; else TagName=$branchName; fi
+          echo "::set-output name=TagName::$(echo $TagName)"
         id: extract_branch
 #      - name: Branch name
 #        run: echo running on branch ${GITHUB_REF##*/} ${{ env.BRANCH_NAME }}
