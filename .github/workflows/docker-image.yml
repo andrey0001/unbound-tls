@@ -1,0 +1,38 @@
+name: docker-build
+
+on:
+  push:
+    branches:
+      - "s6"
+      - "master"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Extract Branch Name
+        shell: bash
+        run: |
+          branchName=${GITHUB_REF#refs/heads/}
+          if [ $branchName = 'master' ]; then TagName='latest'; else TagName=$branchName; fi
+          echo "TagName=$(echo $TagName)" >> $GITHUB_OUTPUT
+        id: extract_branch
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          push: true
+          tags: andrey0001/unbound-tls:${{ steps.extract_branch.outputs.TagName }}
+
