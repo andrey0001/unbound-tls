@@ -6,6 +6,9 @@ on:
       - "s6"
       - "master"
 
+env:
+  REGISTRY_IMAGE: andrey0001/unbound-tls
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -34,5 +37,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: andrey0001/unbound-tls:${{ steps.extract_branch.outputs.TagName }}
+          tags: ${{ env.REGISTRY_IMAGE }}:${{ steps.extract_branch.outputs.TagName }}
 
