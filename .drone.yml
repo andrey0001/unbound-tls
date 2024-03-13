@@ -68,6 +68,6 @@ steps:
     - promote
 
 node:
-  instance: umac
+  instance: umac3
   type: ssh
   
