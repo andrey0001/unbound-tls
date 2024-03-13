@@ -5,8 +5,8 @@ on:
     branches:
       - "s6"
 
-env:
- BRANCH_NAME: ${{ github.head_ref || github.ref_name }}         
+#env:
+#  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}         
         
 jobs:
   docker:
@@ -14,8 +14,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/} ${{ env.BRANCH_NAME }}
+      - name: Extract Branch Name
+        shell: bash
+        run: |
+        branchName=${GITHUB_REF#refs/heads/}
+        if [ $branchName = 'master' ]; then TagName='latest'; else TagName=$branchName; fi
+        echo "::set-output name=TagName::$(echo $TagName)"
+        id: extract_branch
+#      - name: Branch name
+#        run: echo running on branch ${GITHUB_REF##*/} ${{ env.BRANCH_NAME }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -31,5 +38,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: andrey0001/unbound-tls:${{ env.BRANCH_NAME }}
+          tags: andrey0001/unbound-tls:${{ steps.extract_branch.outputs.TagName }}
 
