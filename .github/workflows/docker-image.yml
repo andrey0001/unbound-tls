@@ -1,8 +1,9 @@
-name: docker-build-master
+name: docker-build
 
 on:
   push:
     branches:
+      - "s6"
       - "master"
 
 jobs:
@@ -11,6 +12,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Extract Branch Name
+        shell: bash
+        run: |
+          branchName=${GITHUB_REF#refs/heads/}
+          if [ $branchName = 'master' ]; then TagName='latest'; else TagName=$branchName; fi
+          echo "TagName=$(echo $TagName)" >> $GITHUB_OUTPUT
+        id: extract_branch
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -26,4 +34,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: andrey0001/unbound-tls:latest
+          tags: andrey0001/unbound-tls:${{ steps.extract_branch.outputs.TagName }}
